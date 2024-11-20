@@ -15,4 +15,9 @@ public class TriangleServices extends OperationsUtilities implements SurfaceServ
         this.save(FigureType.TRIANGLE,points);
         return basse * hauteur /2;
     }
+
+    @Override
+    public void read() {
+    super.read();
+    }
 }

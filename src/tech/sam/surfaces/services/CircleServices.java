@@ -13,4 +13,9 @@ public class CircleServices extends OperationsUtilities implements SurfaceServic
            this.save(FigureType.CIRCLE,points);
            return Math.pow((diameter/2),2)*Math.PI;
     }
+
+    @Override
+    public void read() {
+    super.read();
+    }
 }

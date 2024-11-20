@@ -14,4 +14,8 @@ public class RectangleService extends OperationsUtilities implements SurfaceServ
         this.save(FigureType.RECTANGLE,points);
         return largeur * longueur;
     }
+
+    public void read(){
+        super.read();
+    }
 }

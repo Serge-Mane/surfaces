@@ -1,6 +1,7 @@
 package tech.sam.surfaces.utilities;
 
 import tech.sam.surfaces.dao.SurfaceDAO;
+import tech.sam.surfaces.dto.FigureDTO;
 import tech.sam.surfaces.entities.Figure;
 import tech.sam.surfaces.entities.Point;
 import tech.sam.surfaces.enums.FigureType;
@@ -21,5 +22,10 @@ public abstract class OperationsUtilities {
         figure.setName(figureType);
         int figureId=this.surfaceDAO.saveFigure(figure);
         points.forEach(point -> this.surfaceDAO.savePoint(point,figureId));
+    }
+
+    protected void read(){
+        List<FigureDTO>figureDTOS=this.surfaceDAO.readFigure();
+        figureDTOS.forEach(item->System.out.println(String.format("Figure %s %s abs %s ord %s",item.id(),item.name(),item.x(),item.y())));
     }
 }

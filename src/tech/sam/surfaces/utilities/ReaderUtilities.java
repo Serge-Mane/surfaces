@@ -55,6 +55,7 @@ public class ReaderUtilities {
 
     private void displayInstructions(){
         System.out.println("Bienvenue dans ce programme pour calculer les surfaces");
+        System.out.println("Pour afficher les surface du Cercle taper 0");
         System.out.println("Pour calculer la surface du Cercle taper 1");
         System.out.println("Pour calculer la surface du Rectangle/carre taper 2");
         System.out.println("Pour calculer la surface du Triangle taper 3");

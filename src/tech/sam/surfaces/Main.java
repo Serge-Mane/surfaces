@@ -19,34 +19,35 @@ public class Main {
 
 
         int choice=readerUtilities.readChoice();
-        FigureType figureType= FigureType.values()[choice -1];
+        if(choice==0){
+            rectangleService.read();
+        }else {
+            FigureType figureType= FigureType.values()[choice -1];
 
 
-        List<Integer> coordinates=readerUtilities.readData(choice);
-        /*
-        for (int i=0;i<coordinates.size();i++){
-            System.out.println(String.format("coordonees %s vaut %s",i,coordinates.get(i)));
-        }*/
+            List<Integer> coordinates=readerUtilities.readData(choice);
 
-        coordinates.forEach(item-> System.out.printf("coordonees %s",item));
+            coordinates.forEach(item-> System.out.printf("coordonees %s",item));
 
 
-        PointMapper mapper=new PointMapper();
-        List<Point>points= mapper.coordinateToPoint(coordinates);
+            PointMapper mapper=new PointMapper();
+            List<Point>points= mapper.coordinateToPoint(coordinates);
 
-       double surface;
-        switch (figureType){
-            case RECTANGLE ->{
-                surface=rectangleService.calculate(points);
+            double surface;
+            switch (figureType){
+                case RECTANGLE ->{
+                    surface=rectangleService.calculate(points);
+                }
+                case TRIANGLE -> {
+                    surface=triangleService.calculate(points);
+                }
+                default-> {
+                    surface=circleServices.calculate(points);
+                }
             }
-            case TRIANGLE -> {
-                surface=triangleService.calculate(points);
-            }
-            default-> {
-                surface=circleServices.calculate(points);
-            }
+
+            System.out.printf("surface %s",surface);
+        }
         }
 
-        System.out.printf("surface %s",surface);
-    }
 }

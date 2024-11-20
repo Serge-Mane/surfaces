@@ -14,5 +14,5 @@ id int auto_increment primary key,
 x int,
 y int,
 figure_id int,
-foreign key (figure_id) references figure(id)
+foreign key (figure_id) references figures(id)
 );

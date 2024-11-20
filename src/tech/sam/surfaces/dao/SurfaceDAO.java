@@ -1,10 +1,13 @@
 package tech.sam.surfaces.dao;
 
 
+import tech.sam.surfaces.dto.FigureDTO;
 import tech.sam.surfaces.entities.Figure;
 
 import java.awt.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SurfaceDAO {
     private final String URL="jdbc:mysql://localhost:3306/surfaces";
@@ -58,5 +61,30 @@ public class SurfaceDAO {
             throw new RuntimeException(e);
         }
         return  id;
+ }
+
+ public List<FigureDTO> readFigure(){
+     Connection connection = null;
+     List<FigureDTO> dtos=new ArrayList<>();
+     //requete
+     String query="select f.id,f.name,p.x,p.y from figures f join points p on f.id=p.figure_id";
+     PreparedStatement preparedStatement= null;
+     try {
+         connection = DriverManager.getConnection(URL,USER,PASSWORD);
+
+         preparedStatement = connection.prepareStatement(query);
+         //executer la requete
+         ResultSet resultSet=preparedStatement.executeQuery();
+         while (resultSet.next()){
+             int id=resultSet.getInt("id");
+             int x=resultSet.getInt("x");
+             int y=resultSet.getInt("y");
+             String name=resultSet.getString("name");
+             dtos.add(new FigureDTO(id,name,x,y));
+         }
+     } catch (SQLException e) {
+         throw new RuntimeException(e);
+     }
+   return dtos;
  }
 }
