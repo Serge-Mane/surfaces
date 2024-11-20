@@ -9,4 +9,6 @@ id int auto_increment primary key,
 x int,
 y int
 );
+
+select * from  point;
  

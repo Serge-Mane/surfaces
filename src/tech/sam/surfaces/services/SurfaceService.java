@@ -26,13 +26,15 @@ public class SurfaceService {
             double hauteur=this.operationsUtilities.distance(points.get(0),points.get(2));
             surface=basse * hauteur /2;
         }
-        points.forEach(point -> {
+        points.forEach(point -> this.surfaceDAO.savePoint(point));
+
+    /*    points.forEach(point -> {
             try {
                 this.surfaceDAO.savePoint(point);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        });
+        });*/
     return surface;
     }
 }
