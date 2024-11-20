@@ -12,34 +12,42 @@ public class ReaderUtilities {
 * retourner les coordonnees
 * @throw IOException
  * */
-    public List<Integer> readData() throws IOException {
-        int choice=this.readChoice();
-        List<Integer> coordinates=new ArrayList<>();
-        BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+    public List<Integer> readData(int choice) throws IOException {
 
+        List<Integer> coordinates=new ArrayList<>();
         if (choice==1){
             System.out.println("Pour le cercle saisi 4 coordonnes");
-            int index=0;
-            while (index < 4){
-                System.out.println("coordonnees"+(index +1));
-                String valueAsString=reader.readLine();
-                if (!valueAsString.isEmpty()){
-                    int value=Integer.parseInt(valueAsString);
-                    coordinates.add(value);
-                    index++;
-                }
-               }
+            coordinates=readCoordinates(4);
         } else if (choice==2) {
             System.out.println("Pour Rectangle/carre saisi 6 coordonnes");
-        }else if (choice==3) {
+            coordinates=readCoordinates(6);
+            }
+        else if (choice==3) {
             System.out.println("Pour Triangle 6 coordonnes");
-        }else {
+            coordinates=readCoordinates(6);
+            }
+        else {
             System.out.println("Votre choix est inconnu");
         }
         return coordinates;
     }
 
-    private int readChoice() throws IOException {
+    private List<Integer> readCoordinates(int size) throws IOException {
+        List<Integer> coordinates=new ArrayList<>();
+        BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+        int index=0;
+        while (index < size){
+            System.out.println("coordonnees"+(index +1));
+            String valueAsString= reader.readLine();
+            if (!valueAsString.isEmpty()){
+                int value=Integer.parseInt(valueAsString);
+                coordinates.add(value);
+                index++;
+            }
+        }
+        return coordinates;
+    }
+    public int readChoice() throws IOException {
         this.displayInstructions();
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
         return Integer.parseInt(reader.readLine());
