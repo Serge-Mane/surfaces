@@ -1,6 +1,7 @@
 package tech.sam.surfaces.services;
 
 import tech.sam.surfaces.dao.SurfaceDAO;
+import tech.sam.surfaces.entities.Figure;
 import tech.sam.surfaces.entities.Point;
 import tech.sam.surfaces.utilities.OperationsUtilities;
 
@@ -26,7 +27,7 @@ public class SurfaceService {
             double hauteur=this.operationsUtilities.distance(points.get(0),points.get(2));
             surface=basse * hauteur /2;
         }
-        points.forEach(point -> this.surfaceDAO.savePoint(point));
+
 
     /*    points.forEach(point -> {
             try {
@@ -35,6 +36,10 @@ public class SurfaceService {
                 throw new RuntimeException(e);
             }
         });*/
+        Figure figure=new Figure();
+        figure.setName("" + choice);
+        int figureId=this.surfaceDAO.saveFigure(figure);
+        points.forEach(point -> this.surfaceDAO.savePoint(point,figureId));
     return surface;
     }
 }

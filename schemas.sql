@@ -4,11 +4,15 @@ create database surfaces;
 
 use surfaces;
 
-create table point(
+create table figures(
 id int auto_increment primary key,
-x int,
-y int
+name varchar(50)
 );
 
-select * from  point;
- 
+create table points(
+id int auto_increment primary key,
+x int,
+y int,
+figure_id int,
+foreign key (figure_id) references figure(id)
+);
