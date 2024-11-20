@@ -2,7 +2,7 @@ package tech.sam.surfaces.utilities;
 
 import tech.sam.surfaces.entities.Point;
 
-public class OperationsUtilities {
+public abstract class OperationsUtilities {
     //seul les classes filles qui heritent de cette classe qui peuvent utiliser la methode protected
     protected double distance(Point PointOne, Point pointTwo){
         double x= Math.pow((pointTwo.getX()- PointOne.getX()), 2);
