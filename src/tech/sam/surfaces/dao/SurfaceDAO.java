@@ -7,15 +7,15 @@ import java.awt.*;
 import java.sql.*;
 
 public class SurfaceDAO {
-    String url="jdbc:mysql://localhost:3306/surfaces";
-    String user="root";
-    String password="bootcamp2024";
+    private final String URL="jdbc:mysql://localhost:3306/surfaces";
+    private final String USER="root";
+    private final String PASSWORD="bootcamp2024";
 
     public void savePoint(tech.sam.surfaces.entities.Point point,int figureId){
        //connexion
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(url,user,password);
+            connection = DriverManager.getConnection(URL,USER,PASSWORD);
 
     //requete
             String query="insert into points (X,Y,figure_id) values(?,?,?)";
@@ -42,7 +42,7 @@ public class SurfaceDAO {
         String query="insert into figures (name) values(?)";
         PreparedStatement preparedStatement= null;
         try {
-            connection = DriverManager.getConnection(url,user,password);
+            connection = DriverManager.getConnection(URL,USER,PASSWORD);
 
             preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,figure.getName());
