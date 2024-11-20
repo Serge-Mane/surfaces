@@ -45,7 +45,7 @@ public class SurfaceDAO {
             connection = DriverManager.getConnection(URL,USER,PASSWORD);
 
             preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1,figure.getName());
+            preparedStatement.setString(1,figure.getName().name());
             //executer la requete
             int result=preparedStatement.executeUpdate();
             if (result>0){

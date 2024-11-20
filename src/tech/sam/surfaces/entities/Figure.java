@@ -1,16 +1,18 @@
 package tech.sam.surfaces.entities;
 
+import tech.sam.surfaces.enums.FigureType;
+
 import java.util.List;
 
 public class Figure {
     private int id;
-    private  String name;
+    private FigureType name;
     private List<Point> points;
 
     public Figure() {
     }
 
-    public Figure(int id, String name, List<Point> points) {
+    public Figure(int id, FigureType name, List<Point> points) {
         this.id = id;
         this.name = name;
         this.points = points;
@@ -24,11 +26,11 @@ public class Figure {
         this.id = id;
     }
 
-    public String getName() {
+    public FigureType getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(FigureType name) {
         this.name = name;
     }
 
