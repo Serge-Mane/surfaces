@@ -9,26 +9,25 @@ import tech.sam.surfaces.utilities.OperationsUtilities;
 import java.sql.SQLException;
 import java.util.List;
 
-public class SurfaceService {
+public class SurfaceService extends OperationsUtilities{
     SurfaceDAO surfaceDAO=new SurfaceDAO();
-    OperationsUtilities operationsUtilities =new OperationsUtilities();
     public  double calculate(int choice,List<Point>points){
         double surface=0;
         FigureType figureType= FigureType.values()[choice -1];
 
         switch (figureType){
             case RECTANGLE ->{
-                double largeur=this.operationsUtilities.distance(points.get(0),points.get(1));
-                double longueur=this.operationsUtilities.distance(points.get(0),points.get(2));
+                double largeur=this.distance(points.get(0),points.get(1));
+                double longueur=this.distance(points.get(0),points.get(2));
                 surface=largeur * longueur;
             }
             case TRIANGLE -> {
-                double basse=this.operationsUtilities.distance(points.get(0),points.get(1));
-                double hauteur=this.operationsUtilities.distance(points.get(0),points.get(2));
+                double basse=this.distance(points.get(0),points.get(1));
+                double hauteur=this.distance(points.get(0),points.get(2));
                 surface=basse * hauteur /2;
             }
             default->{
-                double diameter=this.operationsUtilities.distance(points.get(0),points.get(1));
+                double diameter=this.distance(points.get(0),points.get(1));
                 surface=Math.pow((diameter/2),2)*Math.PI;
             }
         }
